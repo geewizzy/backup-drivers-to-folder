@@ -1,0 +1,20 @@
+@ECHO off
+
+REM This batch file will xcopy all drivers to a backup folder
+REM change the user name - make a folder in downloads called - !_DriversBackup
+REM if you goto notepad++ and goto plugins and type in   Runme  and install in notepad++  this will run all  bat files from notepad++
+
+REM This will open the folder - that you are working on (path) [change*** - to your drive location]
+%SystemRoot%\explorer.exe "C:\Users\larry\Downloads\!_DriversBackup"
+CLS
+REM This below will empty folder path contents [change*** - to your drive location]
+set folder="C:\Users\larry\Downloads\!_DriversBackup"
+cd /d %folder%
+for /F "delims=" %%i in ('dir /b') do (rmdir "%%i" /s/q || del "%%i" /s/q)
+
+REM This will xcopy all drivers to folder   [ change*** user name ]
+xcopy /c /i /e /s /y "C:\Windows\System32\DriverStore\FileRepository" "C:\Users\larry\Downloads\!_DriversBackup"
+
+REM PAUSE
+	
+REM exit
